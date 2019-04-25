@@ -5,6 +5,7 @@
 /////////////////////////////////////////////////////////////////////
 
 #define _DEFAULT_SOURCE
+#include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
@@ -12,7 +13,7 @@
 #include "racer.h"
 #include "display.h"
 
-int WAIT = DEFAULT_WAIT;
+long WAIT;
 pthread_mutex_t lock;
 
 /// initRacers - Do setup work for all racers at the start of the program.
@@ -20,7 +21,7 @@ pthread_mutex_t lock;
 ///
 void initRacers( long milliseconds ){
 
-	WAIT = (int) milliseconds;
+	WAIT = milliseconds;
 	if (pthread_mutex_init(&lock, NULL) != 0){
         	fprintf(stderr, "\n mutex init failed\n");
     	}
@@ -135,7 +136,8 @@ void *run( void *racer ){
 			break;
 		}
 		else{
-			sleep(waiting_time % 5);		
+			//usleep(waiting_time);		//something is wrong with this should be faster
+			usleep(waiting_time * 1000);
 		}
 		r->dist = r->dist + 5; // should be + 1
 		//update display
@@ -155,8 +157,8 @@ void *run( void *racer ){
                         }
         	pthread_mutex_unlock(&lock);
 	}
-	set_cur_pos(20, 20); //debug
-	printf("%s finished the race", name); //debug
+	//set_cur_pos(20, 20); //debug
+	//printf("%s finished the race", name); //debug
 	//exit(1);
 	return NULL;
 }
