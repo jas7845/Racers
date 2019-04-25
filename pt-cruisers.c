@@ -11,20 +11,11 @@
 #include <string.h>
 #include <pthread.h>
 
-static int WAIT = 200;
+static long WAIT = 200;
 static int NUM_RACERS;
 
 int main( int argc, char *argv[]){
 
-	/*
-	int i = 0;
-	while(isdigit(argv[1][i]) || argv[1][i] == '.'){
-		i++;
-		if(i > strlen(argv[1]))
-			break;
-	}
-	if(i == strlen(argv[1])){
-	*/	
 	int thread_return_val;
 	void *retval;
 	int i = strtol(argv[1], NULL, 10);
@@ -33,10 +24,15 @@ int main( int argc, char *argv[]){
                 WAIT = i;
        		start_names = 2;
 	}
-	i = 0;
-	NUM_RACERS = argc-start_names;
-	Racer * racers[NUM_RACERS];
 	
+	
+	NUM_RACERS = argc-start_names;
+	if(NUM_RACERS < 2){
+		fprintf(stderr, "Usage: pt-cruisers [max-speed-delay] name1 name2 [name3...]\n");
+		return EXIT_FAILURE;
+	}
+	Racer * racers[NUM_RACERS];
+	i = 0;
 	while(start_names <argc){
 		// make the structures calling 	
 		if(strlen(argv[start_names]) <= MAX_NAME_LEN){
