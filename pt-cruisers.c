@@ -11,7 +11,7 @@
 #include <string.h>
 #include <pthread.h>
 
-static long WAIT = 200;
+static long WAIT = DEFAULT_WAIT;
 static int NUM_RACERS;
 
 int main( int argc, char *argv[]){
@@ -27,14 +27,14 @@ int main( int argc, char *argv[]){
 	
 	
 	NUM_RACERS = argc-start_names;
-	if(NUM_RACERS < 2){
+	if(NUM_RACERS < 2){	//  check that there are at least two racers
 		fprintf(stderr, "Usage: pt-cruisers [max-speed-delay] name1 name2 [name3...]\n");
 		return EXIT_FAILURE;
 	}
 	Racer * racers[NUM_RACERS];
 	i = 0;
 	while(start_names <argc){
-		// make the structures calling 	
+		//  make the racer structures if the nam eis less than max len
 		if(strlen(argv[start_names]) <= MAX_NAME_LEN){
 			racers[i] = makeRacer(argv[start_names], i);
 		}
@@ -47,29 +47,24 @@ int main( int argc, char *argv[]){
 	}
 	initRacers(WAIT);
 	pthread_t threads[NUM_RACERS];
-	for(int i = 0; i < NUM_RACERS; i ++){
 
+	for(int i = 0; i < NUM_RACERS; i ++){
+		//  create the threads
 		thread_return_val = pthread_create( &threads[i], NULL, run, (void *)racers[i] );
 
-		// if the creation failed, report it
+		//  if the creation failed, report it
 		if (thread_return_val){
 		   printf( "ERROR; pthread_create() returned %d\n", thread_return_val);
 		   exit(-1);
 		}
-		//printf("dist %s: %i", racers[i]->graphic, racers[i]->dist);
 	}
 	
-	
-	//printf("argv[1]: %s, int: %i, name: %s\n", argv[1], WAIT, racers[0]->graphic); 
 	for(int j = 0; j < NUM_RACERS; j++){
+		//  join the threads when they are done with the run method
 		pthread_join( threads[j], &retval );
-		
-		//printf( "Thread #%d returned %lu.\n", j, (unsigned long) retval );
                 destroyRacer(racers[j]);
         }
-
-
 	printf("\n\n\n");	
 	
-	return 0;
+	return EXIT_SUCCESS;
 }
