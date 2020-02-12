@@ -1,0 +1,47 @@
+commit e74134a6b6b70baad5aa564eab11d5b937467f9b
+Author: Julie Ann Sojkowski <jas7845@cs.rit.edu>
+Date:   Wed Apr 24 20:48:11 2019 -0400
+
+    Commented
+
+commit 2edf687f576ba12159ee69e39b38e6b7ccd62ead
+Author: Julie Ann Sojkowski <jas7845@cs.rit.edu>
+Date:   Wed Apr 24 20:45:03 2019 -0400
+
+    Commented
+
+commit d1a1d08e322efc4f1f310163ea148ad282f44bb1
+Author: Julie Ann Sojkowski <jas7845@cs.rit.edu>
+Date:   Wed Apr 24 20:29:24 2019 -0400
+
+    Working on the usleep timing
+
+commit a6692c889af306fb02c649377e523e6ea6ff632d
+Author: Julie Ann Sojkowski <jas7845@cs.rit.edu>
+Date:   Wed Apr 24 20:29:01 2019 -0400
+
+    Putting in error messages
+
+commit e0b93ef8e86e217f3f69ce6acf4dadbd30cb88e4
+Author: Julie Ann Sojkowski <jas7845@cs.rit.edu>
+Date:   Wed Apr 24 19:06:15 2019 -0400
+
+    Working
+
+commit d9a1db2637468a4b5464b0d41543317c9fa462ca
+Author: Julie Ann Sojkowski <jas7845@cs.rit.edu>
+Date:   Wed Apr 24 19:05:59 2019 -0400
+
+    Working
+
+commit ee903f826169774ef76ee52871a7c7f4f5c3f58d
+Author: Julie Ann Sojkowski <jas7845@cs.rit.edu>
+Date:   Mon Apr 22 14:26:29 2019 -0400
+
+    First commit
+
+commit 701cb15bd1089044419a9ab54b9a8fb6e95354f7
+Author: Julie Ann Sojkowski <jas7845@cs.rit.edu>
+Date:   Mon Apr 22 14:25:54 2019 -0400
+
+    First commit
